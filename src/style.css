@@ -1,6 +1,6 @@
 :root {
   --present-color: hsl(253, 55%, 52%);
-  --present-color-dark: hsl(253, 55%, 32%);
+  --present-color-dark: #38257e;
   --ribbon-color: rgb(240, 51, 83);
   --shadow-color: rgba(10, 16, 18, 0.787);
 }
@@ -14,6 +14,7 @@ html {
 }
 body {
   font-size: 1.6rem;
+  background-color: rgba(0, 0, 0, 0.905);
 }
 h1 {
   font-family: "LuckiestGuy";

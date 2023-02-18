@@ -1,3 +1,10 @@
+<script setup>
+const emit = defineEmits(["changeOverlay"]);
+function btnClick() {
+  emit("changeOverlay");
+}
+</script>
+
 <template>
   <div class="present__container">
     <div class="present__ribbon left"></div>
@@ -5,8 +12,10 @@
 
     <div class="present">
       <div class="present__tape-horizontal">
-        <input type="text" class="name__input" placeholder="Name eingeben" />
-        <button class="name__btn">Click"</button>
+        <div class="btn__container">
+          <input type="text" class="name__input" placeholder="Name eingeben" />
+          <button class="name__btn" @click.prevent="btnClick">auspacken</button>
+        </div>
       </div>
       <div class="present__tape-vertical"></div>
     </div>
@@ -17,6 +26,9 @@
   position: absolute;
   z-index: 0;
   top: 60%;
+  animation: move-present-vertical 1s cubic-bezier(0.575, 0.885, 0.32, 1.2) 1.5s
+      1 both,
+    move-present-horizontal 0.1s linear 2.5s 3;
 }
 .present {
   width: 28rem;
@@ -102,6 +114,7 @@
   right: -4%;
   box-shadow: 0px 0px 3px 0px rgba(105, 42, 53, 0.198),
     5px 5px 8px var(--shadow-color);
+  animation: rotate-ribbon-right 1.5s linear 3.5s infinite;
 }
 
 .name__input {
@@ -109,5 +122,56 @@
   border: none;
   height: 3rem;
   border-radius: 0.8rem;
+  padding-left: 0.8rem;
+}
+.btn__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  animation: show-button 2s linear 3.1s both;
+}
+/* Keyframes ************************************************************************************* */
+@keyframes move-present-vertical {
+  0% {
+    opacity: 0.3;
+    transform: translateY(-100vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0vh);
+  }
+}
+@keyframes move-present-horizontal {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+@keyframes show-button {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes rotate-ribbon-right {
+  0%,
+  100% {
+    transform: rotate(-47deg);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  75% {
+    transform: rotate(-49deg);
+  }
 }
 </style>
