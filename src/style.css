@@ -1,0 +1,26 @@
+:root {
+  --present-color: hsl(253, 55%, 52%);
+  --present-color-dark: hsl(253, 55%, 32%);
+  --ribbon-color: rgb(240, 51, 83);
+  --shadow-color: rgba(10, 16, 18, 0.787);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+}
+h1 {
+  font-family: "LuckiestGuy";
+}
+/****Font-Styling********************************************************************** */
+@font-face {
+  font-family: "LuckiestGuy";
+  src: url(./assets/LuckiestGuy-Regular.woff2);
+  font-weight: 400;
+}
