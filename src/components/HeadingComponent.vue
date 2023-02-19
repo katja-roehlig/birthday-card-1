@@ -7,6 +7,7 @@
   </div>
 </template>
 
+<!-- Styles************************************************************ -->
 <style scoped>
 .heading {
   text-align: center;
@@ -21,10 +22,10 @@
   filter: drop-shadow(2px 2px 15px black);
 }
 .heading__happy {
-  animation: move-happy 0.5s cubic-bezier(0.25, 0.46, 0.45, 1.94) 0.2s 1 both;
+  animation: move-happy 0.5s cubic-bezier(0.25, 0.46, 0.45, 1.94) 0.3s 1 both;
 }
 .heading__birthday {
-  animation: move-birthday 0.3s cubic-bezier(0.25, 0.46, 0.45, 1.94) 0.2s 1 both;
+  animation: move-birthday 0.3s cubic-bezier(0.25, 0.46, 0.45, 1.94) 0.3s 1 both;
 }
 /* keyframes ********************************************************** */
 @keyframes move-happy {
@@ -41,6 +42,13 @@
   }
   100% {
     transform: translateX(0vw);
+  }
+}
+/* media queries ********************************************************* */
+@media (min-width: 768px) {
+  .heading {
+    font-size: 8rem;
+    margin-top: 2.5rem;
   }
 }
 </style>

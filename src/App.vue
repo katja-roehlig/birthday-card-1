@@ -10,12 +10,27 @@ function toggleOverlay() {
   overlay.value = !overlay.value;
 }
 </script>
+<script>
+export default {
+  components: { PresentComponent },
+  data() {
+    return {
+      name: "",
+    };
+  },
+};
+</script>
 
 <template>
   <div class="background">
+    <p class="fotograf">Photo by Daniel Olah</p>
     <HeadingComponent />
-    <PresentComponent @changeOverlay="toggleOverlay()" />
-    <OverlayComponent v-if="overlay" @changeOverlay="toggleOverlay()" />
+    <PresentComponent @changeOverlay="toggleOverlay()" v-model:name="name" />
+    <OverlayComponent
+      v-if="overlay"
+      @changeOverlay="toggleOverlay()"
+      :name="name"
+    />
   </div>
 </template>
 
@@ -25,19 +40,6 @@ function toggleOverlay() {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  /* background-image: linear-gradient(
-      rgba(0, 0, 0, 0.867) 20%,
-      rgba(0, 0, 0, 0.026),
-      rgba(0, 0, 0, 0.967) 80%
-    ),
-    repeating-radial-gradient(
-      rgba(0, 0, 0, 0.574),
-      rgba(0, 0, 0, 0.132) 1px,
-      white 7px,
-      white 10px
-    ); 
-  background-size: cover, 25% 20%;
-  background-repeat: no-repeat, repeat;*/
   background-image: linear-gradient(transparent 50%, hsla(253, 55%, 15%, 0.816)),
     url(./assets/daniel-olah-VUGAcY35Ubw-unsplash.jpg);
   background-size: 100%, cover;
@@ -45,5 +47,20 @@ function toggleOverlay() {
   height: 100vh;
   padding: 6rem 3rem 5rem 3rem;
   position: relative;
+}
+.fotograf {
+  color: rgba(240, 51, 82, 0.523);
+  font-size: 1.1rem;
+  position: absolute;
+  bottom: 2%;
+  right: 4%;
+}
+
+/* media queries ***************************************************************************/
+@media (min-width: 768px) {
+  .background {
+    width: 60vw;
+    padding-bottom: 3rem;
+  }
 }
 </style>

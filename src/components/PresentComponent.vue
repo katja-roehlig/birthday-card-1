@@ -1,34 +1,57 @@
 <script setup>
-const emit = defineEmits(["changeOverlay"]);
+const emit = defineEmits(["changeOverlay", "update:name"]);
+
 function btnClick() {
   emit("changeOverlay");
 }
 </script>
+<script>
+export default {
+  props: ["name"],
+  emits: ["update:name"],
+};
+</script>
 
+<!-- html ---------------------------------------------------------------------------------->
 <template>
   <div class="present__container">
     <div class="present__ribbon left"></div>
     <div class="present__ribbon right"></div>
 
     <div class="present">
+      <div class="present__tape-vertical"></div>
       <div class="present__tape-horizontal">
         <div class="btn__container">
-          <input type="text" class="name__input" placeholder="Name eingeben" />
-          <button class="name__btn" @click.prevent="btnClick">auspacken</button>
+          <label for="birthday-name" class="visually-hidden"
+            >Name eingeben</label
+          >
+          <input
+            type="text"
+            class="name__input"
+            id="birthday-name"
+            placeholder="Name eingeben"
+            required
+            :value="name"
+            @input="$emit('update:name', $event.target.value)"
+          />
+          <button class="name__btn" @click.prevent="btnClick()">
+            auspacken
+          </button>
         </div>
       </div>
-      <div class="present__tape-vertical"></div>
     </div>
   </div>
 </template>
+
+<!-- style ------------------------------------------------------------------------------->
 <style scoped>
 .present__container {
   position: absolute;
   z-index: 0;
-  top: 60%;
-  animation: move-present-vertical 1s cubic-bezier(0.575, 0.885, 0.32, 1.2) 1.5s
+  top: 60vh;
+  animation: move-present-vertical 1s cubic-bezier(0.575, 0.885, 0.32, 1.2) 1.2s
       1 both,
-    move-present-horizontal 0.1s linear 2.5s 3;
+    move-present-horizontal 0.1s linear 2.2s 3;
 }
 .present {
   width: 28rem;
@@ -36,13 +59,6 @@ function btnClick() {
   border-radius: 0.5rem;
   box-shadow: 0px 0px 15px var(--shadow-color),
     inset 0px 0px 20px var(--shadow-color);
-  /* background-image: repeating-linear-gradient(
-    30deg,
-    var(--present-color),
-    var(--present-color) 20px,
-    var(--present-color-dark) 20px,
-    var(--present-color-dark) 25px
-  ); */
   background-image: radial-gradient(
     circle,
     var(--present-color) 25%,
@@ -54,34 +70,30 @@ function btnClick() {
 }
 .present__tape-vertical {
   width: 5rem;
-  height: 21.2rem;
+  height: 100%;
   background-image: linear-gradient(
     var(--ribbon-color) 0%,
     rgba(249, 184, 55, 0.951),
     var(--ribbon-color) 100%
   );
-  position: relative;
-  top: -25%;
   box-shadow: 0px 0px 3px 0px rgba(105, 42, 53, 0.198);
 }
 
 .present__tape-horizontal {
-  width: 28.2rem;
+  width: 100%;
   height: 5rem;
-  --background-color: var(--ribbon-color);
   background-image: linear-gradient(
     90deg,
     var(--ribbon-color) 0%,
-    rgb(249, 185, 55),
+    var(--ribbon-color-accent),
     var(--ribbon-color) 100%
   );
-  position: relative;
+  position: absolute;
   top: 40%;
   z-index: 1;
 }
 .present__ribbon {
   height: 4rem;
-  --background-color: var(--ribbon-color);
   border-radius: 0.5rem;
   position: absolute;
   z-index: 1;
@@ -90,7 +102,7 @@ function btnClick() {
 .left {
   background-image: linear-gradient(
     90deg,
-    rgb(249, 185, 55),
+    var(--ribbon-color-accent),
     var(--ribbon-color) 70%
   );
   width: 12rem;
@@ -119,17 +131,46 @@ function btnClick() {
 
 .name__input {
   background-color: rgb(236, 201, 136);
-  border: none;
+  border: 1px solid white;
   height: 3rem;
-  border-radius: 0.8rem;
+  border-radius: 1rem;
   padding-left: 0.8rem;
+  box-shadow: 0px 0px 7px var(--ribbon-color);
+  color: var(--present-color-dark);
+  width: 50%;
 }
 .btn__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 100%;
   animation: show-button 2s linear 3.1s both;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.name__btn {
+  height: 2.8rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  padding: 0.1rem 1rem 0rem 1rem;
+  color: rgb(241, 226, 199);
+  background-color: var(--present-color-dark);
+  box-shadow: 0px 0px 3px white;
+  text-transform: uppercase;
+}
+.name__btn:hover {
+  transform: scale(1.05);
+  background-color: var(--present-color);
 }
 /* Keyframes ************************************************************************************* */
 @keyframes move-present-vertical {
@@ -172,6 +213,31 @@ function btnClick() {
   }
   75% {
     transform: rotate(-49deg);
+  }
+}
+@keyframes scale-button {
+  0%,
+  100% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+/* media queries ********************************************************** */
+@media (min-width: 768px) {
+  .present {
+    width: 34rem;
+    height: 25rem;
+  }
+  .present__container {
+    top: 65vh;
+  }
+  .left {
+    right: 50%;
+  }
+  .right {
+    right: 4%;
   }
 }
 </style>

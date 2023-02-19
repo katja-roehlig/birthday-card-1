@@ -2,7 +2,10 @@
   --present-color: hsl(253, 55%, 52%);
   --present-color-dark: #38257e;
   --ribbon-color: rgb(240, 51, 83);
+  --ribbon-color-accent: rgb(249, 185, 55);
   --shadow-color: rgba(10, 16, 18, 0.787);
+  --overlay-color-dark: #aa0969;
+  --overlay-color: pink;
 }
 
 * {
@@ -11,10 +14,11 @@
 }
 html {
   font-size: 62.5%;
+  font-family: sans-serif;
 }
 body {
   font-size: 1.6rem;
-  background-color: rgba(0, 0, 0, 0.905);
+  background-color: #120c26;
 }
 h1 {
   font-family: "LuckiestGuy";
