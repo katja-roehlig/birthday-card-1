@@ -215,15 +215,7 @@ export default {
     transform: rotate(-49deg);
   }
 }
-@keyframes scale-button {
-  0%,
-  100% {
-    transform: scale(0.95);
-  }
-  50% {
-    transform: scale(1);
-  }
-}
+
 /* media queries ********************************************************** */
 @media (min-width: 768px) {
   .present {

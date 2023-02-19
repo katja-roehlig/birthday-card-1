@@ -4,9 +4,16 @@ const emit = defineEmits(["changeOverlay"]);
 function divClick() {
   emit("changeOverlay");
 }
+
 let isPlaying = ref(false);
+let btnText = ref("🎶 Ein Lied für Dich");
 function handleMusic() {
-  isPlaying.value = true;
+  isPlaying.value = !isPlaying.value;
+  if (isPlaying.value === true) {
+    btnText.value = "II";
+  } else {
+    btnText.value = "▶︎";
+  }
 }
 const props = defineProps({ name: String });
 </script>
@@ -27,14 +34,13 @@ const props = defineProps({ name: String });
     </div>
     <p class="text text__sender">Katja</p>
     <button class="btn btn__music" @click="handleMusic()">
-      🎶 Ein Lied für Dich
+      {{ btnText }}
     </button>
     <audio src="/happy-birthday-crowd.mp3 " type="audio/mp3" autoplay>
       Music!
     </audio>
 
     <audio
-      controls
       src="/happy-birthday-guitar.mp3"
       type="audio/mp3"
       autoplay
