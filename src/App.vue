@@ -41,7 +41,7 @@ export default {
   align-items: center;
   gap: 1.5rem;
   background-image: linear-gradient(transparent 50%, hsla(253, 55%, 15%, 0.816)),
-    url(./assets/daniel-olah-VUGAcY35Ubw-unsplash.jpg);
+    url(./assets/daniel-olah-feuerwerk-mittel.webp);
   background-size: 100%, cover;
   background-repeat: no-repeat;
   height: 100vh;

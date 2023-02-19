@@ -67,7 +67,7 @@ audio {
   opacity: 0.98;
   width: 100%;
   height: 100vh;
-  background-image: url(../assets/maria-cake.jpg);
+  background-image: url(../assets/maria-cake-mittel.webp);
   background-size: 130% 140%;
   background-repeat: no-repeat;
   background-position: 10% 30%;

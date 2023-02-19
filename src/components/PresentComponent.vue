@@ -48,7 +48,7 @@ export default {
 .present__container {
   position: absolute;
   z-index: 0;
-  top: 60vh;
+  top: 58vh;
   animation: move-present-vertical 1s cubic-bezier(0.575, 0.885, 0.32, 1.2) 1.2s
       1 both,
     move-present-horizontal 0.1s linear 2.2s 3;
@@ -231,7 +231,7 @@ export default {
     height: 25rem;
   }
   .present__container {
-    top: 65vh;
+    top: 63vh;
   }
   .left {
     right: 50%;
